@@ -24,3 +24,14 @@ usersRoutes.get("/", async (req: Request, res: Response) => {
     users,
   });
 });
+
+usersRoutes.get("/:userId", async (req: Request, res: Response) => {
+  const userId = req.params.userId;
+  const user = await User.findById(userId);
+
+  res.status(201).json({
+    success: true,
+    message: "User retrived successfuly",
+    user,
+  });
+});
