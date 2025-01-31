@@ -14,3 +14,13 @@ usersRoutes.post("/create-user", async (req: Request, res: Response) => {
     user,
   });
 });
+
+usersRoutes.get("/", async (req: Request, res: Response) => {
+  const users = await User.find();
+
+  res.status(201).json({
+    success: true,
+    message: "All Users retreived successfuly",
+    users,
+  });
+});
