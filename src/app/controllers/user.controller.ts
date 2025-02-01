@@ -46,3 +46,15 @@ usersRoutes.delete("/:userId", async (req: Request, res: Response) => {
     user,
   });
 });
+
+usersRoutes.patch("/:userId", async (req: Request, res: Response) => {
+  const userId = req.params.userId;
+  const updatedBody = req.body;
+  const user = await User.findByIdAndUpdate(userId, updatedBody, { new: true });
+
+  res.status(201).json({
+    success: true,
+    message: "User updated successfuly",
+    user,
+  });
+});
